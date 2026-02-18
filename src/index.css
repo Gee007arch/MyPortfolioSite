@@ -32,9 +32,9 @@
 
 .text-shimmer-animate {
   background: linear-gradient(
-    90deg,
+    60deg,
     #ffffff 0%,
-    #ffffff 40%,
+    #FF0000 40%,
     #FF0000 50%,
     #ffffff 60%,
     #ffffff 100%
@@ -43,6 +43,7 @@
   color: #ffffff; /* Fallback */
   -webkit-background-clip: text;
   background-clip: text;
+  -webkit-text-stroke: 1px #ffffff;
   -webkit-text-fill-color: transparent;
   animation: textShimmer 10s linear infinite;
 }

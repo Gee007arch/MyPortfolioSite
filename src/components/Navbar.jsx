@@ -22,6 +22,7 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Call once on mount to set initial active section
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -45,14 +46,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-sm shadow-lg shadow-red-900/10' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/70 backdrop-blur-sm shadow-lg mb-7 shadow-red-900/10' : 'bg-transparent'}`}>
       {scrolled && <BackgroundCircles variant="default" />}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0 relative">
-            {/* Logo with red circle accent behind */}
+          <div className="flex-shrink-0 ">
             <div className="absolute -top-2 -left-3 w-10 h-10 bg-theme-red rounded-full opacity-80 -z-10"></div>
-            <h1 className="text-2xl font-bold text-white relative z-10">Akojuru Godsent</h1>
+            <img   src="assets/img/logo.jpeg"  alt="logo" className='h-16 w-16 rounded-full' />
           </div>
 
           {/* Desktop Navigation */}
@@ -64,7 +64,7 @@ const Navbar = () => {
                     key={link.name}
                     href={link.href}
                     onClick={(e) => scrollToSection(e, link.href)}
-                    className="bg-theme-red hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold transition-all duration-300 transform hover:scale-105"
+                    className="bg-theme-red hover:bg-theme-red-hover text-white px-6 py-2 rounded-full font-bold transition-all duration-300 transform hover:scale-105"
                   >
                     {link.name}
                   </a>
@@ -80,7 +80,7 @@ const Navbar = () => {
                     }`}
                   >
                     {link.name}
-                    <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-theme-red transition-all duration-300 group-hover:w-full ${activeSection === link.href.substring(1) ? 'w-full' : ''}`}></span>
+                    <span className={`absolute -bottom-1 left-0 w-0.5 h-0.5 bg-theme-red transition-all duration-300 group-hover:w-full ${activeSection === link.href.substring(1) ? 'w-full' : 'w-full'}`}></span>
                   </a>
                 )
               ))}
@@ -99,7 +99,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} bg-black/95 backdrop-blur-xl absolute w-full`}>
         <div className="px-4 pt-2 pb-6 space-y-2">
           {navLinks.map((link) => (
@@ -111,7 +110,7 @@ const Navbar = () => {
                 activeSection === link.href.substring(1)
                   ? 'text-theme-red bg-white/5'
                   : 'text-gray-300 hover:text-white hover:bg-white/5'
-              } ${link.name === 'Contact' ? 'bg-theme-red text-white hover:bg-red-700 mt-4 text-center' : ''}`}
+              } ${link.name === 'Contact' ? 'bg-theme-red text-white hover:bg-theme-red-hover mt-4 text-center' : ''}`}
             >
               {link.name}
             </a>

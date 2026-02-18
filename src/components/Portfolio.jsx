@@ -41,7 +41,7 @@ const Portfolio = () => {
       image: "assets/img/portfolio/project4.png",
       description: "A comprehensive shopping solution featuring a dynamic flash-sale countdown, multi-category navigation, and a robust product filtering system modeled after modern retail giants.",
       link: "https://gee-ecommerce.netlify.app/",
-      github: "#"
+      github: "https://github.com/Gee007arch/Gee_e-commerce"
     },
     {
       id: 5,
@@ -50,7 +50,7 @@ const Portfolio = () => {
       image: "assets/img/portfolio/project5.png",
       description: "A high-end corporate platform for capital partners, focusing on data visualization, trust metrics, and a sophisticated professional aesthetic to drive enterprise growth.",
       link: "https://vendurecapital.com/",
-      github: "#"
+      github: "https://github.com/tonituler/vendure_landing"
     },
     {
       id: 6,
@@ -59,7 +59,7 @@ const Portfolio = () => {
       image: "assets/img/portfolio/project6.png",
       description: "A functional food discovery and ordering platform that prioritizes local search functionality and a seamless user flow from restaurant selection to checkout.",
       link: "https://clever-food.netlify.app/",
-      github: "#"
+      github: "https://github.com/Gee007arch/cleverfood"
     }
   ];
 
@@ -84,56 +84,52 @@ const Portfolio = () => {
       <BackgroundCircles variant="portfolio" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Portfolio</h2>
+        <div className="text-center my-12 opacity-0 animate-fade-in [animation-fill-mode:forwards]">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block">My Latest Works</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             A showcase of my recent projects and creative work across different domains.
           </p>
         </div>
         
-        {/* Portfolio Filter */}
-        <div className="flex flex-wrap justify-center mb-12 gap-4">
-          {['all', 'web', 'app', 'design'].map((category) => (
-            <button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                filter === category
-                  ? 'bg-theme-red text-white shadow-lg shadow-red-900/50'
-                  : 'bg-gray-800 text-gray-300 hover:bg-theme-red hover:text-white'
-              }`}
-            >
-              {category === 'all' ? 'All' : 
-               category === 'web' ? 'Web Development' : 
-               category === 'app' ? 'Mobile Apps' : 'UI/UX Design'}
-            </button>
-          ))}
-        </div>
-        
         {/* Portfolio Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item) => (
+          {filteredItems.map((item, index) => (
             <div 
               key={item.id} 
-              className="group cursor-pointer animate-fade-in"
+              className="group cursor-pointer opacity-0 animate-slide-up [animation-fill-mode:forwards]"
+              style={{ animationDelay: `${index * 150}ms` }}
               onClick={() => openLightbox(item)}
             >
-              <div className="relative overflow-hidden rounded-xl shadow-lg shadow-red-900/10 group-hover:shadow-red-900/30 transition-all duration-300 border border-gray-800 group-hover:border-red-500/50">
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/70 bg-opacity-0 group-hover:bg-opacity-100 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <div className="text-center text-white p-4">
+              <div className="relative overflow-hidden rounded-xl shadow-lg shadow-red-900/10 group-hover:shadow-red-900/30 transition-all duration-300 border border-gray-800 group-hover:border-red-500/50 h-full transform group-hover:-translate-y-2">
+                <div className="overflow-hidden h-64">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center">
+                  <div className="text-center text-white p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <h3 className="text-xl font-bold mb-2 text-theme-red">{item.title}</h3>
-                    <p className="text-sm mb-4 text-gray-300">{item.description}</p>
+                    <p className="text-sm mb-4 text-gray-300 line-clamp-3">{item.description}</p>
                     <div className="flex justify-center space-x-4">
-                      <button className="bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                      <button 
+                        className="bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors transform hover:scale-105" 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(item.link, '_blank');
+                        }}
+                      >
                         <i className="fas fa-external-link-alt mr-2"></i>View
                       </button>
-                      <button className="border-2 border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition-all">
-                        <i class="fab fa-github mr-2"></i>Code
+                      <button 
+                        className="border-2 border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition-all transform hover:scale-105" 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(item.github, '_blank');
+                        }}
+                      >
+                        <i className="fab fa-github mr-2"></i>Code
                       </button>
                     </div>
                   </div>
