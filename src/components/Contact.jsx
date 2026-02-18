@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import BackgroundCircles from './BackgroundCircles';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -50,9 +51,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="section-padding bg-theme-off-black text-white relative overflow-hidden">
-      {/* Contact Specific Circles */}
-      <div className="absolute top-10 left-10 w-24 h-24 bg-red-600 rounded-full opacity-30 blur-xl"></div>
-      <div className="absolute bottom-10 right-10 w-64 h-64 bg-red-900 rounded-full opacity-20 blur-3xl"></div>
+      <BackgroundCircles variant="contact" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
@@ -102,7 +101,7 @@ const Contact = () => {
             <div className="mt-12">
               <h4 className="font-semibold mb-4 text-white">Follow Me</h4>
               <div className="flex space-x-4">
-                <a href="#" className="w-12 h-12 bg-gray-800 hover:bg-theme-red rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-red-900/50">
+                <a href="https://x.com/geeofficial69" className="w-12 h-12 bg-gray-800 hover:bg-theme-red rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-red-900/50">
                   <i className="fab fa-twitter text-white"></i>
                 </a>
                 <a href="https://www.linkedin.com/in/godsent-akojuru" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-gray-800 hover:bg-theme-red rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-red-900/50">

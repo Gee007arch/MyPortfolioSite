@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import BackgroundCircles from './BackgroundCircles';
 
 const Stats = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -26,10 +27,8 @@ const Stats = () => {
   }, [hasAnimated]);
 
   return (
-    <section id="stats" className="section-padding bg-theme-slate-contrast text-white relative overflow-hidden" ref={statsRef}>
-      {/* Stats Specific Circles - Blue/Gray/Red mix */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-slate-800 rounded-full opacity-30 blur-3xl"></div>
-      <div className="absolute bottom-0 left-10 w-40 h-40 bg-red-900 rounded-full opacity-20 blur-2xl"></div>
+    <section id="stats" className="section-padding bg-theme-red text-white relative overflow-hidden" ref={statsRef}>
+      <BackgroundCircles variant="stats" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
@@ -73,7 +72,7 @@ const StatItem = ({ end, label, shouldAnimate }) => {
 
   return (
     <div className="text-center">
-      <div className="text-4xl font-bold text-theme-red mb-2">{count}</div>
+      <div className="text-4xl font-bold text-theme-paper-white mb-2">{count}</div>
       <p className="text-gray-300">{label}</p>
     </div>
   );

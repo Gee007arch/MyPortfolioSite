@@ -1,3 +1,5 @@
+import BackgroundCircles from './BackgroundCircles';
+
 const Services = () => {
   const services = [
     {
@@ -40,9 +42,7 @@ const Services = () => {
 
   return (
     <section id="services" className="section-padding bg-theme-slate-contrast relative overflow-hidden">
-      {/* Services Specific Circles */}
-      <div className="absolute top-1/3 left-0 w-80 h-80 bg-red-900 rounded-full opacity-10 blur-3xl"></div>
-      <div className="absolute bottom-10 right-10 w-40 h-40 bg-slate-700 rounded-full opacity-20 blur-2xl"></div>
+      <BackgroundCircles variant="services" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">

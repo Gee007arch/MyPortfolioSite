@@ -1,9 +1,9 @@
+import BackgroundCircles from './BackgroundCircles';
+
 const Resume = () => {
   return (
     <section id="resume" className="section-padding bg-theme-deep-blood relative overflow-hidden">
-      {/* Resume Specific Circles */}
-      <div className="absolute top-0 left-1/4 w-40 h-40 bg-red-800 rounded-full opacity-30 blur-2xl"></div>
-      <div className="absolute bottom-10 right-10 w-32 h-32 bg-red-900 rounded-full opacity-40 blur-3xl"></div>
+      <BackgroundCircles variant="resume" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
@@ -19,27 +19,58 @@ const Resume = () => {
             <h3 className="text-2xl font-bold text-white mb-8">Professional Experience</h3>
             <div className="space-y-8">
               <ResumeItem 
-                title="Front End Developer"
+                title="Front End Developer (Intern)"
                 company="One Box Media, Gwarimpa, Abuja"
                 date="Oct 2025 - Present"
-                description="Developed responsive web applications using React and Tailwind CSS to improve user engagement. Integrated APIs to enhance front-end functionality and optimize user experience."
+                description="Developing responsive web applications and integrating APIs to enhance user experience."
                 list={[
-                  "Built responsive interfaces focused on accessibility and usability",
-                  "Integrated RESTful APIs to deliver dynamic, real-time features",
-                  "Collaborated with designers on wireframes and prototypes",
-                  "Participated in code reviews to uphold quality standards"
+                  "Developed responsive web applications using React and Tailwindcss to improve user engagement",
+                  "Integrated APIs to enhance front-end functionality and optimize user experience",
+                  "Collaborated with designers to create user-friendly interfaces for improved accessibility",
+                  "Assisted in wireframe and prototype creation for new feature development",
+                  "Participated in code reviews to uphold quality standards across all projects",
+                  "Gathered feedback from team members to drive design improvements effectively",
+                  "Updated existing websites with fresh content and refined design elements as necessary"
                 ]}
               />
               <ResumeItem 
                 title="Professional Travel Manager"
                 company="Dreamport, Remote"
                 date="Mar 2025 - Aug 2025"
-                description="Coordinated client travel logistics, developed policies, and provided tailored itinerary recommendations while managing inquiries efficiently."
+                description="Managed travel logistics and client itineraries with a focus on compliance and customer satisfaction."
                 list={[
-                  "Handled end-to-end travel arrangements and timely bookings",
-                  "Assisted development of travel policies and compliance guidelines",
-                  "Researched destinations and prepared custom itineraries",
-                  "Addressed client inquiries and resolved travel concerns"
+                  "Coordinated travel arrangements for clients, ensuring smooth logistics and timely bookings",
+                  "Assisted in developing travel policies and guidelines for organizational compliance",
+                  "Researched destinations, providing clients with tailored itinerary recommendations",
+                  "Handled client inquiries, offering support and addressing travel-related concerns promptly"
+                ]}
+              />
+              <ResumeItem 
+                title="Receptionist"
+                company="Network Operations Center, UNILORIN, Ilorin, Kwara State"
+                date="Jan 2022 - Dec 2022"
+                description="Managed front-desk operations and administrative tasks to support office efficiency."
+                list={[
+                  "Greeted and assisted visitors in a professional manner",
+                  "Managed incoming calls and directed them to appropriate departments",
+                  "Scheduled appointments for staff and maintained calendar updates",
+                  "Handled correspondence and distributed mail to relevant personnel",
+                  "Maintained a clean and organized reception area for guests",
+                  "Assisted with administrative tasks to support office operations"
+                ]}
+              />
+              <ResumeItem 
+                title="Sales Rep"
+                company="Edinwo Supermarket, Tanke, Ilorin, Kwara State"
+                date="Feb 2021 - Nov 2021"
+                description="Focused on customer relationship management and achieving sales targets."
+                list={[
+                  "Developing and maintaining relationships with new and existing customers",
+                  "Generating leads and following up on sales inquiries",
+                  "Meeting sales targets and objectives set by the company",
+                  "Providing product demonstrations and presentations to potential customers",
+                  "Negotiating contracts and closing deals",
+                  "Keeping accurate records of sales activities and customer interactions"
                 ]}
               />
             </div>
@@ -53,20 +84,31 @@ const Resume = () => {
                 title="Advanced Diploma in Software Engineering"
                 company="Aptech Ltd, Area 11, Garki, Abuja"
                 date="Sep 2023 - Oct 2025"
-                description="Practical training in software engineering and modern web development."
+                description="Comprehensive training in full-stack development, software engineering principles, and modern web technologies."
                 list={[
-                  "Focused on React, Tailwind CSS, and API integration",
-                  "Hands-on projects and collaborative development"
+                  "Specialized in React ecosystem and enterprise-grade API orchestration",
+                  "Deep understanding of the full Software Development Life Cycle (SDLC)",
+                  "Practical experience in resolving complex algorithmic logic and database architecture"
                 ]}
               />
               <ResumeItem 
-                title="Bachelor of Science in Telecommunication Science"
+                title="Bachelor of Science (BSc.) Telecommunication Science"
                 company="University of Ilorin, Ilorin, Kwara State"
                 date="Dec 2018 - May 2023"
-                description="Studied telecommunication systems and core computing concepts with practical applications."
+                description="Studied telecommunication systems, networking protocols, and core computing concepts."
                 list={[
-                  "Projects exploring networking and systems",
-                  "Foundations in software and communication technologies"
+                  "Gained foundational knowledge in network operations and system architecture",
+                  "Developed analytical and problem-solving skills through technical coursework"
+                ]}
+              />
+              <ResumeItem 
+                title="Senior Secondary School Certificate (SSCE)"
+                company="Government Science Secondary School, Pyakasa, Maitama, Abuja"
+                date="Sep 2015 - Jun 2018"
+                description="Completed secondary education with a focus on science subjects."
+                list={[
+                  "Foundation in mathematics and sciences",
+                  "Participated in science club activities"
                 ]}
               />
             </div>

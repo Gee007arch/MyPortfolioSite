@@ -1,3 +1,5 @@
+import BackgroundCircles from './BackgroundCircles';
+
 const Testimonials = () => {
   const testimonials = [
     {
@@ -22,9 +24,7 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="section-padding bg-theme-paper-white text-gray-900 relative overflow-hidden">
-      {/* Testimonials Specific Circles - Subtle Light Mode */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-red-100 rounded-full opacity-50 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gray-200 rounded-full opacity-50 blur-3xl"></div>
+      <BackgroundCircles variant="testimonials" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">

@@ -1,14 +1,15 @@
 import { useEffect, useRef } from 'react';
+import BackgroundCircles from './BackgroundCircles';
 
 const Hero = () => {
   const typedTextRef = useRef(null);
   
   useEffect(() => {
     const texts = [
-      'Front End Developer',
+      'Front End Web Developer',
       'React Developer',
-      'Tailwind CSS',
-      'API Integration'
+      'Web Designer',
+      'Graphics Designer'
     ];
     
     let textIndex = 0;
@@ -53,16 +54,12 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center bg-theme-off-black overflow-hidden">
-      {/* Hero Specific Circles */}
-      <div className="absolute top-1/2 -translate-y-1/2 right-[-10%] md:right-0 w-[500px] h-[500px] md:w-[700px] md:h-[700px] bg-[#FF0000] rounded-full z-0"></div>
-      <div className="absolute top-[15%] right-[20%] w-24 h-24 bg-[#500000] rounded-full z-0 opacity-80 blur-xl"></div>
-      <div className="absolute bottom-[-5%] left-[-5%] w-64 h-64 bg-[#800000] rounded-full z-0 opacity-60 blur-3xl"></div>
-      <div className="absolute top-20 left-10 w-32 h-32 bg-red-600 rounded-full z-0 opacity-20 blur-2xl"></div>
+      <BackgroundCircles variant="hero" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         
         {/* Left Content */}
-        <div className="animate-fade-in text-left">
+        <div className="animate-fade-in ">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4">
             Hello, I'm <span className="font-lobster italic text-shimmer-animate">Akojuru Godsent</span>
           </h1>
@@ -94,8 +91,7 @@ const Hero = () => {
         </div>
 
         {/* Right Image */}
-        <div className="relative flex justify-center md:justify-end">
-          {/* Image Container */}
+        {/* <div className="relative flex justify-center md:justify-end">
           <div className="relative z-10 w-full max-w-md">
             <img 
               src="assets/img/profile-img.jpg" 
@@ -103,7 +99,7 @@ const Hero = () => {
               className="w-full h-auto object-cover rounded-2xl shadow-2xl border-4 border-black transform hover:scale-105 transition-transform duration-500"
             />
           </div>
-        </div>
+        </div> */}
         
       </div>
     </section>

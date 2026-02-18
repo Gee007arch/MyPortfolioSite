@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import BackgroundCircles from './BackgroundCircles';
 
 const Portfolio = () => {
   const [filter, setFilter] = useState('all');
@@ -13,7 +14,7 @@ const Portfolio = () => {
       image: "assets/img/portfolio/project1.png",
       description: "A sleek, user-centric weather application that utilizes API integration to deliver live atmospheric data and forecasts with a minimalist \"glassmorphism\" UI.",
       link: "https://geeoicialweatherapp.netlify.app/",
-      github: "#"
+      github: "https://github.com/Gee007arch/ShyWatch---Weather-App"
     },
     {
       id: 2,
@@ -22,7 +23,7 @@ const Portfolio = () => {
       image: "assets/img/portfolio/project2.png",
       description: "A professional architectural showcase website featuring high-resolution galleries and a modern, high-contrast interface designed to highlight large-scale structural projects.",
       link: "https://gs-architects.netlify.app/",
-      github: "#"
+      github: "https://github.com/Gee007arch/GS-architects"
     },
     {
       id: 3,
@@ -31,7 +32,7 @@ const Portfolio = () => {
       image: "assets/img/portfolio/project3.png",
       description: "A modern, mobile-responsive crypto-tracking platform that provides real-time data on digital assets, enabling users to monitor their portfolios and stay informed about market trends.",
       link: "https://geecrypto.netlify.app/",
-      github: "#"
+      github: "https://github.com/Gee007arch/Gee-s-Crypto"
     },
     {
       id: 4,
@@ -79,10 +80,8 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="section-padding bg-theme-off-black relative overflow-hidden">
-      {/* Portfolio Specific Circles */}
-      <div className="absolute top-20 right-20 w-40 h-40 bg-red-900 rounded-full opacity-20 blur-3xl"></div>
-      <div className="absolute bottom-1/4 left-10 w-60 h-60 bg-gray-800 rounded-full opacity-30 blur-2xl"></div>
+    <section id="portfolio" className="section-padding bg-theme-deep-blood relative overflow-hidden">
+      <BackgroundCircles variant="portfolio" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">

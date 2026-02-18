@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import BackgroundCircles from './BackgroundCircles';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +46,8 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-sm shadow-lg shadow-red-900/10' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {scrolled && <BackgroundCircles variant="default" />}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 relative">
             {/* Logo with red circle accent behind */}

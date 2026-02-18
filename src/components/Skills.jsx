@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import BackgroundCircles from './BackgroundCircles';
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,24 +27,22 @@ const Skills = () => {
   }, []);
 
   const skills = [
-    { name: 'Tailwind CSS', percent: 85 },
-    { name: 'JavaScript', percent: 90 },
-    { name: 'React', percent: 85 },
-    { name: 'API Integration', percent: 85 },
+    { name: 'React development', percent: 90 },
+    { name: 'Tailwindcss', percent: 95 },
+    { name: 'API integration', percent: 85 },
+    { name: 'JavaScript', percent: 85 },
   ];
 
   const tools = [
-    { name: 'Version Control (Git)', percent: 85 },
-    { name: 'Team Collaboration', percent: 90 },
-    { name: 'Project Management', percent: 80 },
+    { name: 'Project management', percent: 80 },
     { name: 'Decision-making', percent: 85 },
+    { name: 'Team collaboration', percent: 90 },
+    { name: 'Version control (Git)', percent: 85 },
   ];
 
   return (
-    <section id="skills" className="section-padding bg-theme-off-black relative overflow-hidden" ref={sectionRef}>
-      {/* Skills Specific Circles */}
-      <div className="absolute top-1/2 left-0 w-64 h-64 bg-red-900 rounded-full opacity-10 blur-3xl transform -translate-y-1/2"></div>
-      <div className="absolute top-10 right-10 w-32 h-32 bg-gray-800 rounded-full opacity-30 blur-2xl"></div>
+    <section id="skills" className="section-padding bg-theme-deep-blood relative overflow-hidden" ref={sectionRef}>
+      <BackgroundCircles variant="skills" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
@@ -56,7 +55,7 @@ const Skills = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Technical Skills */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-8">Technical Skills</h3>
+            <h3 className="text-2xl font-bold text-white mb-8">Professional Skills</h3>
             <div className="space-y-6">
               {skills.map((skill) => (
                 <SkillBar key={skill.name} name={skill.name} percent={skill.percent} isVisible={isVisible} />
@@ -64,9 +63,9 @@ const Skills = () => {
             </div>
           </div>
           
-          {/* Design Skills */}
+          {/* Soft Skills & Tools */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-8">Tools & Soft Skills</h3>
+            <h3 className="text-2xl font-bold text-white mb-8">Tools & Methodologies</h3>
             <div className="space-y-6">
               {tools.map((tool) => (
                 <SkillBar key={tool.name} name={tool.name} percent={tool.percent} isVisible={isVisible} />
