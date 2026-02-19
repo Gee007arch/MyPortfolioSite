@@ -24,7 +24,8 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <motion.div 
             variants={slideInLeft}
-            className="relative group w-full max-w-[500px] hidden lg:block lg:h-[600px] mx-auto lg:mx-0 top-0 rounded-2xl shadow-2xl border border-red-900/30 bg-fixed bg-[url(assets/img/profile-img.jpeg)] bg-no-repeat"
+            className="relative group w-full max-w-[500px] hidden lg:block lg:h-[600px] mx-auto lg:mx-0 top-0 rounded-2xl shadow-2xl border border-red-900/30 bg-fixed bg-no-repeat bg-cover bg-center"
+            style={{ backgroundImage: "url('/assets/img/profile-img.jpeg')" }}
           >
             <div className="absolute inset-0 -z-10 w-full h-full bg-black/10 "></div>
             
