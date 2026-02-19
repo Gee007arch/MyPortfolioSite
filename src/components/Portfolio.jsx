@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import BackgroundCircles from './BackgroundCircles';
-import TechOrbit from './TechOrbit';
+import BackgroundCircles from './specials/BackgroundCircles';
+import TechOrbit from './specials/TechOrbit';
+import TiltCard from './specials/TiltCard';
 import { fadeInUp, staggerContainer, hoverScale } from '../utils/motion';
 
 const Portfolio = () => {
@@ -118,43 +119,45 @@ const Portfolio = () => {
               variants={fadeInUp}
               whileHover={hoverScale}
               onClick={() => openLightbox(item)}
-              className="group cursor-pointer"
+              className="group cursor-pointer h-full"
             >
-              <div className="relative overflow-hidden rounded-xl shadow-lg shadow-red-900/10 transition-all duration-300 border border-gray-800 group-hover:border-red-500/50 h-full">
-                <div className="overflow-hidden h-64">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center">
-                  <div className="text-center text-white p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-xl font-bold mb-2 text-theme-red">{item.title}</h3>
-                    <p className="text-sm mb-4 text-gray-300 line-clamp-3">{item.description}</p>
-                    <div className="flex justify-center space-x-4">
-                      <button 
-                        className="bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors transform hover:scale-105" 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(item.link, '_blank');
-                        }}
-                      >
-                        <i className="fas fa-external-link-alt mr-2"></i>View
-                      </button>
-                      <button 
-                        className="border-2 border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition-all transform hover:scale-105" 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(item.github, '_blank');
-                        }}
-                      >
-                        <i className="fab fa-github mr-2"></i>Code
-                      </button>
+              <TiltCard className="h-full">
+                <div className="relative overflow-hidden rounded-xl shadow-lg shadow-red-900/10 transition-all duration-300 border border-gray-800 group-hover:border-red-500/50 h-full bg-black/40">
+                  <div className="overflow-hidden h-64">
+                    <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center">
+                    <div className="text-center text-white p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 w-full">
+                      <h3 className="text-xl font-bold mb-2 text-theme-red">{item.title}</h3>
+                      <p className="text-sm mb-4 text-gray-300 line-clamp-2">{item.description}</p>
+                      <div className="flex justify-center space-x-4">
+                        <button 
+                          className="bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors transform hover:scale-105 shadow-lg" 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(item.link, '_blank');
+                          }}
+                        >
+                          <i className="fas fa-external-link-alt mr-2"></i>View
+                        </button>
+                        <button 
+                          className="bg-black/50 backdrop-blur-sm border-2 border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition-all transform hover:scale-105 shadow-lg" 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(item.github, '_blank');
+                          }}
+                        >
+                          <i className="fab fa-github mr-2"></i>Code
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </TiltCard>
             </motion.div>
           ))}
         </div>

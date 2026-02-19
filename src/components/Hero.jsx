@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import BackgroundCircles from './BackgroundCircles';
-import TechOrbit from './TechOrbit';
+import BackgroundCircles from './specials/BackgroundCircles';
+import TechOrbit from './specials/TechOrbit';
 import { fadeInUp, staggerContainer, slideInRight } from '../utils/motion';
 
 const Hero = () => {

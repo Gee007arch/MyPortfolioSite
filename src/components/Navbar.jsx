@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import BackgroundCircles from './BackgroundCircles';
+import BackgroundCircles from './specials/BackgroundCircles';
 
 const navLinks = [
   { name: 'Home', href: '#hero' },

@@ -1,4 +1,4 @@
-import BackgroundCircles from './BackgroundCircles';
+import BackgroundCircles from './specials/BackgroundCircles';
 
 const Testimonials = () => {
   const testimonials = [

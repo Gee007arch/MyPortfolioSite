@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import BackgroundCircles from './BackgroundCircles';
-import TechOrbit from './TechOrbit';
+import BackgroundCircles from './specials/BackgroundCircles';
+import TechOrbit from './specials/TechOrbit';
+import TiltCard from './specials/TiltCard';
 import { fadeInUp, staggerContainer, hoverScale } from '../utils/motion';
 
 const Services = () => {
@@ -68,15 +69,19 @@ const Services = () => {
               key={index} 
               variants={fadeInUp}
               whileHover={hoverScale}
-              className="bg-black/40 p-8 rounded-xl shadow-lg transition-all duration-300 border border-slate-800 hover:border-red-500/30 group hover:bg-slate-800/80"
+              className="h-full"
             >
-              <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
-                <i className={`fas ${service.icon} text-white text-2xl group-hover:animate-pulse`}></i>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-theme-red transition-colors duration-300">{service.title}</h3>
-              <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                {service.description}
-              </p>
+              <TiltCard className="h-full">
+                <div className="bg-black/40 p-8 rounded-xl shadow-lg transition-all duration-300 border border-slate-800 hover:border-red-500/30 group hover:bg-slate-800/80 h-full">
+                  <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
+                    <i className={`fas ${service.icon} text-white text-2xl group-hover:animate-pulse`}></i>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-theme-red transition-colors duration-300">{service.title}</h3>
+                  <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                    {service.description}
+                  </p>
+                </div>
+              </TiltCard>
             </motion.div>
           ))}
         </div>

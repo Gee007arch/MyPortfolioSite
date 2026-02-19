@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
-import BackgroundCircles from './BackgroundCircles';
-import TechOrbit from './TechOrbit';
+import BackgroundCircles from './specials/BackgroundCircles';
+import TechOrbit from './specials/TechOrbit';
 import { fadeInUp, staggerContainer, hoverLift, hoverScale } from '../utils/motion';
 
 const Contact = () => {

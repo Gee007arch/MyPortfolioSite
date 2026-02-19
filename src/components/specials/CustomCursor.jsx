@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  
+  const springConfig = { damping: 25, stiffness: 150, mass: 0.1 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const moveCursor = (e) => {
+      cursorX.set(e.clientX - 16);
+      cursorY.set(e.clientY - 16);
       if (!isVisible) setIsVisible(true);
     };
 
@@ -26,14 +33,14 @@ const CustomCursor = () => {
       }
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
+    window.addEventListener('mousemove', moveCursor);
     document.addEventListener('mouseover', handleMouseOver);
 
     return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
+      window.removeEventListener('mousemove', moveCursor);
       document.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [isVisible]);
+  }, [cursorX, cursorY, isVisible]);
 
   // Hide on mobile/touch devices
   if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
@@ -42,22 +49,19 @@ const CustomCursor = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference"
-      animate={{
-        x: mousePosition.x - 16,
-        y: mousePosition.y - 16,
-        scale: isHovering ? 2.5 : 1,
-        backgroundColor: isHovering ? '#ef4444' : '#ffffff', // Red when hovering, white otherwise
+      className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999]"
+      style={{
+        x: cursorXSpring,
+        y: cursorYSpring,
         opacity: isVisible ? 1 : 0,
       }}
-      transition={{
-        type: "spring",
-        stiffness: 150,
-        damping: 15,
-        mass: 0.1
+      animate={{
+        scale: isHovering ? 2.5 : 1,
+        backgroundColor: isHovering ? '#ef4444' : '#ffffff', 
       }}
-      style={{
-        boxShadow: isHovering ? '0 0 20px 5px rgba(239, 68, 68, 0.5)' : 'none'
+      transition={{
+        scale: { type: "spring", stiffness: 300, damping: 20 },
+        backgroundColor: { duration: 0.2 }
       }}
     />
   );

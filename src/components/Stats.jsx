@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import BackgroundCircles from './BackgroundCircles';
+import BackgroundCircles from './specials/BackgroundCircles';
 
 const Stats = () => {
   const [hasAnimated, setHasAnimated] = useState(false);

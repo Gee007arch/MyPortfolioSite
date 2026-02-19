@@ -12,6 +12,8 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import LoadingScreen from './components/LoadingScreen';
+import CustomCursor from './components/specials/CustomCursor';
+import ScrollProgress from './components/specials/ScrollProgress';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -30,6 +32,8 @@ function App() {
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       
       <div className={`transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+        <CustomCursor />
+        <ScrollProgress />
         <Navbar />        
       <Hero />
         {/* <FadeInSection><About /></FadeInSection> */}
