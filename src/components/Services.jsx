@@ -1,4 +1,7 @@
+import { motion } from 'framer-motion';
 import BackgroundCircles from './BackgroundCircles';
+import TechOrbit from './TechOrbit';
+import { fadeInUp, staggerContainer, hoverScale } from '../utils/motion';
 
 const Services = () => {
   const services = [
@@ -44,20 +47,28 @@ const Services = () => {
     <section id="services" className="section-padding bg-theme-deep-blood relative overflow-hidden">
       <BackgroundCircles variant="services" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center my-12 opacity-0 animate-fade-in [animation-fill-mode:forwards]">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block">Services</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+      <motion.div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        <motion.div variants={fadeInUp} className="text-center my-12 relative inline-block w-full">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block relative z-10">Services</h2>
+          <TechOrbit className="-left-8 -top-8 w-24 h-24 opacity-20" />
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mt-4">
             Comprehensive digital solutions to help your business grow and succeed in the digital world.
           </p>
-        </div>
+        </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div 
+            <motion.div 
               key={index} 
-              className="bg-black/40 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-800 hover:border-red-500/30 group opacity-0 animate-slide-up [animation-fill-mode:forwards] hover:bg-slate-800/80"
-              style={{ animationDelay: `${index * 150}ms` }}
+              variants={fadeInUp}
+              whileHover={hoverScale}
+              className="bg-black/40 p-8 rounded-xl shadow-lg transition-all duration-300 border border-slate-800 hover:border-red-500/30 group hover:bg-slate-800/80"
             >
               <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
                 <i className={`fas ${service.icon} text-white text-2xl group-hover:animate-pulse`}></i>
@@ -66,10 +77,10 @@ const Services = () => {
               <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
                 {service.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

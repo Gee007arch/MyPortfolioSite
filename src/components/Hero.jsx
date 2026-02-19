@@ -1,5 +1,8 @@
 import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import BackgroundCircles from './BackgroundCircles';
+import TechOrbit from './TechOrbit';
+import { fadeInUp, staggerContainer, slideInRight } from '../utils/motion';
 
 const Hero = () => {
   const typedTextRef = useRef(null);
@@ -58,17 +61,24 @@ const Hero = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex flex-col md:flex-row gap-4 items-center">
         
-        <div className="animate-fade-in animate-delay-200 flex-2">
-          <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-white mb-5">
-            Hi, I'm <span className="font-lobster italic text-shimmer-animate"> Godsent</span>
-          </h1>
+        <motion.div 
+          className="flex-2"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-8xl font-bold text-white mb-5 relative inline-block">
+            Hi, I'm <span className="font-lobster italic text-shimmer-animate relative z-10"> Godsent</span>
+            
+            <TechOrbit className="-right-4 -top-6 md:-right-12 md:-top-8 w-20 h-20 md:w-32 md:h-32" />
+          </motion.h1>
           
-          <p className="text-3xl text-gray-300 mb-8 max-w-lg ">
-           <span ref={typedTextRef} className=" font-bold md:text-5xl  bg-gradient-to-b from-theme-paper-white  to-theme-red bg-clip-text text-transparent"></span>
+          <motion.p variants={fadeInUp} className="text-3xl text-gray-300 mb-8 max-w-lg ">
+           <span ref={typedTextRef} className=" font-bold lg:text-5xl  bg-gradient-to-b from-theme-paper-white  to-theme-red bg-clip-text text-transparent"></span>
             <span className="animate-pulse text-red-500">|</span>
-          </p>
+          </motion.p>
           
-          <div className="mb-8 flex flex-col items-center">
+          <motion.div variants={fadeInUp} className="mb-8 flex flex-col items-center">
             <p className="text-white font-semibold mb-4 text-xl">Find Me on</p>
             <div className="flex space-x-5 md:space-x-10">
               <a href="https://www.facebook.com/share/1GTjETc9X4/" className="group relative text-white transition-all duration-300 hover:-translate-y-2">
@@ -92,18 +102,23 @@ const Hero = () => {
                 <i className="fab fa-github text-3xl relative z-10 group-hover:text-red-500 group-hover:scale-110 transition-transform duration-300"></i>
               </a>
             </div>
-          </div>
+          </motion.div>
           
-          <div className="flex flex-row gap-4 items-center justify-center group transform hover:translate-x-2 transition-transform duration-300">
+          <motion.div variants={fadeInUp} className="flex flex-row gap-4 items-center justify-center group transform hover:translate-x-2 transition-transform duration-300">
             <a href="#contact" className="relative overflow-hidden bg-gradient-to-r from-red-600 via-red-500 to-red-600 bg-[length:200%_auto] animate-shine text-white px-6 py-3 md:px-10 md:py-4 rounded-full font-bold text-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,0,0,0.6)] active:scale-95 border-2 border-transparent hover:border-white/20 group-hover:scale-110 group-hover:rotate-12 ">
               Hire me
             </a>
         
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Right Image */}
-        <div className="relative hidden md:flex justify-center md:justify-end flex-1">
+        <motion.div 
+          className="relative hidden md:flex justify-center md:justify-end flex-1"
+          variants={slideInRight}
+          initial="hidden"
+          animate="visible"
+        >
           <div className="relative z-10 w-full max-w-md">
             <img 
               src="assets/img/profile-img2.png" 
@@ -111,7 +126,7 @@ const Hero = () => {
               className="w-full h-auto object-cover "
             />
           </div>
-        </div>
+        </motion.div>
         
       </div>
     </section>

@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import BackgroundCircles from './BackgroundCircles';
+import TechOrbit from './TechOrbit';
+import { fadeInUp, staggerContainer, hoverScale } from '../utils/motion';
 
 const Portfolio = () => {
-  const [filter, setFilter] = useState('all');
+  const [filter] = useState('all');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -70,42 +73,59 @@ const Portfolio = () => {
   const openLightbox = (item) => {
     setSelectedImage(item);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
     setSelectedImage(null);
-    document.body.style.overflow = 'auto';
   };
+
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = 'auto';
+      };
+    }
+
+    document.body.style.overflow = 'auto';
+  }, [lightboxOpen]);
 
   return (
     <section id="portfolio" className="section-padding bg-theme-deep-blood relative overflow-hidden">
       <BackgroundCircles variant="portfolio" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center my-12 opacity-0 animate-fade-in [animation-fill-mode:forwards]">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block">My Latest Works</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+      <motion.div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        <motion.div variants={fadeInUp} className="text-center my-12 relative inline-block w-full">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block relative z-10">My Latest Works</h2>
+          <TechOrbit className="-right-8 -top-8 w-24 h-24 opacity-20" />
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mt-4">
             A showcase of my recent projects and creative work across different domains.
           </p>
-        </div>
+        </motion.div>
         
         {/* Portfolio Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item, index) => (
-            <div 
+          {filteredItems.map((item) => (
+            <motion.div 
               key={item.id} 
-              className="group cursor-pointer opacity-0 animate-slide-up [animation-fill-mode:forwards]"
-              style={{ animationDelay: `${index * 150}ms` }}
+              variants={fadeInUp}
+              whileHover={hoverScale}
               onClick={() => openLightbox(item)}
+              className="group cursor-pointer"
             >
-              <div className="relative overflow-hidden rounded-xl shadow-lg shadow-red-900/10 group-hover:shadow-red-900/30 transition-all duration-300 border border-gray-800 group-hover:border-red-500/50 h-full transform group-hover:-translate-y-2">
+              <div className="relative overflow-hidden rounded-xl shadow-lg shadow-red-900/10 transition-all duration-300 border border-gray-800 group-hover:border-red-500/50 h-full">
                 <div className="overflow-hidden h-64">
                   <img 
                     src={item.image} 
                     alt={item.title} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center">
@@ -135,12 +155,11 @@ const Portfolio = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-      {/* Lightbox */}
       {lightboxOpen && selectedImage && (
         <div 
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm"

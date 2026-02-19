@@ -1,30 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import BackgroundCircles from './BackgroundCircles';
+import TechOrbit from './TechOrbit';
+import { fadeInUp, staggerContainer, hoverLift } from '../utils/motion';
 
 const Skills = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   const skills = [
     { name: 'HTML', percent: 97, icon: 'fab fa-html5', color: 'text-orange-500' },
@@ -48,38 +29,53 @@ const Skills = () => {
     <section id="skills" className="section-padding bg-theme-deep-blood relative overflow-hidden" ref={sectionRef}>
       <BackgroundCircles variant="skills" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16 opacity-0 animate-fade-in [animation-fill-mode:forwards]">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block">Skills & Expertise</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+      <motion.div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        <motion.div variants={fadeInUp} className="text-center mb-16 relative inline-block w-full">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block relative z-10">Skills & Expertise</h2>
+          <TechOrbit className="-left-8 -top-8 w-24 h-24 opacity-20" />
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mt-4">
             I've developed a diverse skill set across multiple technologies and frameworks to deliver comprehensive solutions.
           </p>
-        </div>
+        </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="opacity-0 animate-slide-up [animation-fill-mode:forwards] [animation-delay:200ms]">
+          <motion.div variants={fadeInUp}>
             <h3 className="text-2xl font-bold text-white mb-8 border-b-2 border-theme-red pb-2 inline-block">Technical Skills</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {skills.map((skill, index) => (
-                <div key={skill.name} className="transform hover:scale-105 transition-transform duration-300" style={{ transitionDelay: `${index * 50}ms` }}>
-                  <SkillCard skill={skill} isVisible={isVisible} />
-                </div>
+              {skills.map((skill) => (
+                <motion.div 
+                  key={skill.name} 
+                  variants={fadeInUp}
+                  whileHover={hoverLift}
+                >
+                  <SkillCard skill={skill} isVisible={true} />
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
           
-          <div className="opacity-0 animate-slide-up [animation-fill-mode:forwards] [animation-delay:400ms]">
+          <motion.div variants={fadeInUp}>
             <h3 className="text-2xl font-bold text-white mb-8 border-b-2 border-theme-red pb-2 inline-block">Tools & Soft Skills</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {tools.map((tool, index) => (
-                <div key={tool.name} className="transform hover:scale-105 transition-transform duration-300" style={{ transitionDelay: `${index * 50}ms` }}>
-                  <SkillCard skill={tool} isVisible={isVisible} />
-                </div>
+              {tools.map((tool) => (
+                <motion.div 
+                  key={tool.name} 
+                  variants={fadeInUp}
+                  whileHover={hoverLift}
+                >
+                  <SkillCard skill={tool} isVisible={true} />
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

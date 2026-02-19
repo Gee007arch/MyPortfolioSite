@@ -1,6 +1,9 @@
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { motion } from 'framer-motion';
 import BackgroundCircles from './BackgroundCircles';
+import TechOrbit from './TechOrbit';
+import { fadeInUp, staggerContainer, hoverLift, hoverScale } from '../utils/motion';
 
 const Contact = () => {
   const formRef = useRef();
@@ -30,7 +33,7 @@ const Contact = () => {
     const PUBLIC_KEY = 'q7zviOibLIMOpCcwM';
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
-      .then((result) => {
+      .then(() => {
         setStatus({ type: 'success', message: 'Message sent successfully!' });
         setFormData({ name: '', email: '', subject: '', message: '' });
       }, (error) => {
@@ -52,19 +55,29 @@ const Contact = () => {
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-theme-deep-blood to-theme-off-black z-0"></div>
       <BackgroundCircles variant="contact" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center my-12 opacity-0 animate-fade-in [animation-fill-mode:forwards]">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-theme-paper-white text-shimmer-animate inline-block">Get In Touch</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+      <motion.div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        <motion.div variants={fadeInUp} className="text-center my-12 relative inline-block w-full">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-theme-paper-white text-shimmer-animate inline-block relative z-10">Get In Touch</h2>
+          <TechOrbit className="-left-8 -top-8 w-24 h-24 opacity-20" />
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mt-4">
             Ready to start your next project? Let's discuss how I can help bring your ideas to life.
           </p>
-        </div>
+        </motion.div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="opacity-0 animate-slide-up [animation-fill-mode:forwards] [animation-delay:200ms]">
+          <motion.div variants={fadeInUp}>
             <h3 className="text-2xl font-bold mb-8 border-l-4 border-theme-red pl-4">Let's Connect</h3>
             <div className="space-y-6">
-              <div className="flex items-center group transform hover:translate-x-2 transition-transform duration-300">
+              <motion.div 
+                whileHover={hoverLift}
+                className="flex items-center group"
+              >
                 <div className="w-12 h-12 bg-theme-red rounded-lg flex items-center justify-center mr-4 shadow-lg shadow-red-900/50 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
                   <i className="fas fa-map-marker-alt text-white"></i>
                 </div>
@@ -72,9 +85,12 @@ const Contact = () => {
                   <h4 className="font-semibold text-white group-hover:text-theme-red transition-colors duration-300">Location</h4>
                   <p className="text-gray-400">Abuja FCT, Nigeria</p>
                 </div>
-              </div>
+              </motion.div>
               
-              <div className="flex items-center group transform hover:translate-x-2 transition-transform duration-300">
+              <motion.div 
+                whileHover={hoverLift}
+                className="flex items-center group"
+              >
                 <div className="w-12 h-12 bg-theme-red rounded-lg flex items-center justify-center mr-4 shadow-lg shadow-red-900/50 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
                   <i className="fas fa-envelope text-white"></i>
                 </div>
@@ -82,9 +98,12 @@ const Contact = () => {
                   <h4 className="font-semibold text-white group-hover:text-theme-red transition-colors duration-300">Email</h4>
                   <p className="text-gray-400">eberegodsent@gmail.com</p>
                 </div>
-              </div>
+              </motion.div>
               
-              <div className="flex items-center group transform hover:translate-x-2 transition-transform duration-300">
+              <motion.div 
+                whileHover={hoverLift}
+                className="flex items-center group"
+              >
                 <div className="w-12 h-12 bg-theme-red rounded-lg flex items-center justify-center mr-4 shadow-lg shadow-red-900/50 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
                   <i className="fas fa-phone text-white"></i>
                 </div>
@@ -92,11 +111,10 @@ const Contact = () => {
                   <h4 className="font-semibold text-white group-hover:text-theme-red transition-colors duration-300">Phone</h4>
                   <p className="text-gray-400">+234 818 929 1855</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
             
-            {/* Social Links */}
-            <div className="mt-12">
+            <motion.div variants={fadeInUp} className="mt-12">
               <h4 className="font-semibold mb-4 text-white">Follow Me</h4>
               <div className="flex space-x-4">
                 <a href="https://x.com/geeofficial69" className="w-12 h-12 bg-gray-800 hover:bg-theme-red rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-900/50 group">
@@ -112,11 +130,10 @@ const Contact = () => {
                   <i className="fab fa-dribbble text-white group-hover:animate-pulse"></i>
                 </a>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
-          {/* Contact Form */}
-          <div className="opacity-0 animate-slide-up [animation-fill-mode:forwards] [animation-delay:400ms]">
+          <motion.div variants={fadeInUp}>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 bg-gray-900/50 p-8 rounded-xl border border-gray-800 hover:border-red-900/30 transition-colors duration-300 shadow-xl">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="group">
@@ -175,17 +192,19 @@ const Contact = () => {
                 ></textarea>
               </div>
               
-              <button 
+              <motion.button 
                 type="submit" 
                 disabled={isSubmitting}
-                className={`w-full bg-theme-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg shadow-red-900/30 transform hover:-translate-y-1 hover:scale-[1.02] active:scale-95 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`w-full bg-theme-red hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg shadow-red-900/30 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
-              </button>
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Success Modal Pop-up */}
       {status.message && status.type === 'success' && (

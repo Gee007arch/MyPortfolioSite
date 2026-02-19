@@ -1,20 +1,30 @@
+import { motion } from 'framer-motion';
 import BackgroundCircles from './BackgroundCircles';
+import TechOrbit from './TechOrbit';
+import { fadeInUp, staggerContainer, slideInLeft, slideInRight } from '../utils/motion';
 
 const Resume = () => {
   return (
     <section id="resume" className="section-padding bg-theme-deep-blood relative overflow-hidden">
       <BackgroundCircles variant="resume" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center my-12 opacity-0 animate-fade-in [animation-fill-mode:forwards]">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block">Resume</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+      <motion.div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        <motion.div variants={fadeInUp} className="text-center my-12 relative inline-block w-full">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block relative z-10">Resume</h2>
+          <TechOrbit className="-right-6 -top-6 w-24 h-24 opacity-20" />
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mt-4">
             My professional journey and educational background that shaped my expertise.
           </p>
-        </div>
+        </motion.div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="opacity-0 animate-slide-up [animation-fill-mode:forwards] [animation-delay:200ms]" data-aos="flip-right" data-aos-delay="200">
+          <motion.div variants={slideInLeft}>
             <h3 className="text-2xl font-bold text-white mb-8 border-l-4 border-theme-red pl-4">Professional Experience</h3>
             <div className="space-y-8">
               <ResumeItem 
@@ -28,7 +38,6 @@ const Resume = () => {
                   "Collaborated with designers on wireframes and prototypes",
                   "Participated in code reviews to uphold quality standards"
                 ]}
-                delay="300"
               />
               <ResumeItem 
                 title="Professional Travel Manager"
@@ -41,12 +50,11 @@ const Resume = () => {
                   "Researched destinations and prepared custom itineraries",
                   "Addressed client inquiries and resolved travel concerns"
                 ]}
-                delay="400"
               />
             </div>
-          </div>
+          </motion.div>
           
-          <div className="opacity-0 animate-slide-up [animation-fill-mode:forwards] [animation-delay:400ms]" data-aos="flip-left" data-aos-delay="400">
+          <motion.div variants={slideInRight}>
             <h3 className="text-2xl font-bold text-white mb-8 border-l-4 border-theme-red pl-4">Education</h3>
             <div className="space-y-8">
               <ResumeItem 
@@ -59,7 +67,6 @@ const Resume = () => {
                   "Deep understanding of the full Software Development Life Cycle (SDLC)",
                   "Practical experience in resolving complex algorithmic logic and database architecture"
                 ]}
-                delay="500"
               />
               <ResumeItem 
                 title="Bachelor of Science in Telecommunication Science"
@@ -70,21 +77,24 @@ const Resume = () => {
                   "Projects exploring networking and systems",
                   "Foundations in software and communication technologies"
                 ]}
-                delay="600"
               />
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
 
-const ResumeItem = ({ title, company, date, description, list, delay }) => {
+const ResumeItem = ({ title, company, date, description, list }) => {
   return (
-    <div className="relative pl-8 border-l-2 border-theme-red group" style={{ transitionDelay: `${delay}ms` }}>
+    <motion.div 
+      className="relative pl-8 border-l-2 border-theme-red group"
+      whileHover={{ x: 5 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
       <div className="absolute -left-2 top-0 w-4 h-4 bg-theme-red rounded-full group-hover:scale-150 group-hover:shadow-[0_0_10px_#ff0000] transition-all duration-300"></div>
-      <div className="bg-black/40 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-900/20 hover:border-red-500/50 hover:-translate-y-2 transform">
+      <div className="bg-black/40 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-900/20 hover:border-red-500/50 transform">
         <h4 className="text-xl font-bold text-white mb-2 group-hover:text-theme-red transition-colors duration-300">{title}</h4>
         <p className="text-red-400 font-semibold mb-2">{company} • {date}</p>
         <p className="text-gray-400 mb-4">{description}</p>
@@ -94,7 +104,7 @@ const ResumeItem = ({ title, company, date, description, list, delay }) => {
           ))}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
