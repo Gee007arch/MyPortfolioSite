@@ -59,7 +59,7 @@ const Hero = () => {
     <section id="hero" className="relative min-h-screen flex items-center bg-theme-off-black overflow-hidden">
       <BackgroundCircles variant="hero" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex flex-col md:flex-row gap-4 items-center">
+      <div className="max-w-3xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 md:px-7 lg:px-8 w-full relative z-10 flex flex-col md:flex-row gap-4 items-center">
         
         <motion.div 
           className="flex-2"

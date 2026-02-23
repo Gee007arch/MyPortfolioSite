@@ -49,7 +49,7 @@ const Services = () => {
       <BackgroundCircles variant="services" />
 
       <motion.div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        className="max-w-3xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 md:px-7 lg:px-8 w-full relative z-10"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"

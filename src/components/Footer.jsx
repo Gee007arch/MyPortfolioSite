@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-theme-off-black to-theme-dark text-white py-12 relative overflow-hidden">
       <BackgroundCircles variant="footer" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 md:px-7 lg:px-8 relative z-10">
         <div className="text-center opacity-0 animate-fade-in [animation-fill-mode:forwards]">
           <h3 className="text-2xl font-bold mb-4 hover:text-theme-red transition-colors duration-300 cursor-default">Akojuru Godsent</h3>
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto hover:text-gray-300 transition-colors duration-300">

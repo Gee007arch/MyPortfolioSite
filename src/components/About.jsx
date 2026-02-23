@@ -10,7 +10,7 @@ const About = () => {
       <BackgroundCircles variant="about" />
 
       <motion.div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        className="max-w-3xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 md:px-7 lg:px-8 w-full relative z-10"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
@@ -38,7 +38,7 @@ const About = () => {
             </motion.div>
           </motion.div>
           
-          <motion.div variants={fadeInUp} className="" >
+          <motion.div variants={fadeInUp} className="px-4 sm:px-6 lg:px-8" >
             <h3 className="text-3xl font-bold text-white mb-6">Gee Dev</h3>
             <p className="text-lg text-gray-400 mb-8 leading-relaxed hover:text-gray-300 transition-colors duration-300">
            As an Aptech-certified Software Engineer (ADSE) with a background in Telecommunication Science, I don't just build websites—I engineer high-performance digital environments. Operating under the name Gee Dev, I specialize in the React ecosystem, blending the structural rigor of the SDLC with the creative flair of modern UI trends. From glassmorphism-styled logic engines to fluid, hardware-accelerated animations, I write clean, scalable code designed to solve real-world business problems. Currently honing my craft at CodeAlpha, I bring a scientist’s precision to every pixel-perfect clone and custom API integration I build.
