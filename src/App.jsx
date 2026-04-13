@@ -62,15 +62,11 @@ const FadeInSection = ({ children }) => {
           setIsVisible(true);
         }
       });
-    }, { threshold: 0.1 }); // Trigger when 10% of the section is visible
+    }, { threshold: 0.1 }); 
     
-    // Find the section element within children to observe
-    // This is a simplified approach; ideally refs would be passed down
     const domElement = document.querySelector(`#${children.type.name.toLowerCase()}`);
     if (domElement) observer.observe(domElement);
     
-    // Fallback: observe a wrapper div
-    // But since we want to animate the section itself, let's wrap it
   }, [children]);
 
   return (

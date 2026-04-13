@@ -79,7 +79,7 @@ const Navbar = () => {
             <div className="relative">
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-theme-red via-theme-red-hover to-theme-paper-white opacity-60 blur-md animate-pulse"></div>
               <div className="relative h-14 w-14 md:h-16 md:w-16 rounded-full border-2 border-theme-red shadow-lg shadow-red-900/40 overflow-hidden bg-black/60">
-                <img src="assets/img/logo.jpeg" alt="logo" className="h-full w-full object-cover" />
+                <img src="assets/img/logo.jpeg" alt="logo" loading="lazy" decoding="async" className="h-full w-full object-cover" />
               </div>
             </div>
           </motion.div>

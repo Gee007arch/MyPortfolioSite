@@ -8,9 +8,7 @@ const TechOrbit = ({ className = "" }) => {
       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
     >
       <svg viewBox="0 0 100 100" className="w-full h-full">
-        {/* Orbit 1 */}
         <circle cx="50" cy="50" r="45" stroke="url(#orbitGradient)" strokeWidth="1" strokeDasharray="4 6" />
-        {/* Orbit 2 (Reverse) */}
         <motion.circle 
           cx="50" cy="50" r="30" 
           stroke="#ef4444" strokeWidth="0.5" 
@@ -19,7 +17,6 @@ const TechOrbit = ({ className = "" }) => {
           style={{ transformOrigin: "50% 50%" }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
-        {/* Planet (React-like atom) */}
         <motion.circle cx="50" cy="5" r="3" fill="#ef4444" />
         
         <defs>

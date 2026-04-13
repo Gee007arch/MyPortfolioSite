@@ -43,7 +43,7 @@ const Testimonials = () => {
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <div className="flex items-center mb-6">
-                <img src={testimonial.image} alt={testimonial.name} className="w-16 h-16 rounded-full object-cover mr-4 shadow-md transition-transform duration-300 hover:scale-110" />
+                <img src={testimonial.image} alt={testimonial.name} loading="lazy" decoding="async" className="w-16 h-16 rounded-full object-cover mr-4 shadow-md transition-transform duration-300 hover:scale-110" />
                 <div>
                   <h4 className="font-bold text-theme-paper-white">{testimonial.name}</h4>
                   <p className="text-theme-paper-white font-medium">{testimonial.role}</p>

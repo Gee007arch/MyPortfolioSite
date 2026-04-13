@@ -42,7 +42,6 @@ const CustomCursor = () => {
     };
   }, [cursorX, cursorY, isVisible]);
 
-  // Hide on mobile/touch devices
   if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
     return null;
   }

@@ -5,15 +5,13 @@ const LoadingScreen = ({ onComplete }) => {
   const [slideOut, setSlideOut] = useState(false);
 
   useEffect(() => {
-    // Simulate loading time (e.g., assets, fonts)
     const timer = setTimeout(() => {
       setLoading(false);
       setSlideOut(true);
       
-      // Notify parent component that loading is complete after animation
       setTimeout(() => {
         if (onComplete) onComplete();
-      }, 1000); // Wait for slide-out animation to finish
+      }, 1000); 
     }, 2000);
 
     return () => clearTimeout(timer);

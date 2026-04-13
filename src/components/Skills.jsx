@@ -91,7 +91,7 @@ const SkillCard = ({ skill, isVisible }) => {
     <div className="bg-black/40 p-4 rounded-xl border border-red-900/20 flex items-center space-x-4 hover:border-red-500/50 transition-colors group">
       <div className={`text-3xl ${skill.color} animate-bounce-slow flex items-center justify-center w-10 h-10`}>
         {skill.isImage ? (
-          <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
+          <img src={skill.icon} alt={skill.name} loading="lazy" decoding="async" className="w-full h-full object-contain" />
         ) : (
           <i className={skill.icon}></i>
         )}

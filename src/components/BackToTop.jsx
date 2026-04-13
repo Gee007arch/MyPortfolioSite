@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,9 +12,9 @@ const BackToTop = () => {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
 
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
@@ -46,7 +46,7 @@ const BackToTop = () => {
     <button
       onClick={scrollToTop}
       className={`fixed bottom-8 right-8 w-12 h-12 bg-theme-red hover:bg-theme-red-hover   animate-bounce-slow text-white rounded-full shadow-lg transition-all duration-300 z-50 flex items-center justify-center ${
-        isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'
+        isVisible ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
     >
       <i className="fas fa-chevron-up animate-pulse"></i>
