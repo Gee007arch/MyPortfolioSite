@@ -142,14 +142,19 @@ const Portfolio = () => {
       {lightboxOpen && selectedImage && (
         <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm"
-          onClick={closeLightbox}
           role="dialog"
           aria-modal="true"
           aria-labelledby="lightbox-title"
         >
+          <button
+            type="button"
+            aria-label="Close modal overlay"
+            className="fixed inset-0 w-full h-full cursor-default bg-transparent border-0 p-0 m-0"
+            onClick={closeLightbox}
+          />
           <div
-            className="relative max-w-4xl w-full max-h-screen"
-            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-4xl w-full max-h-screen z-10"
+            role="document"
           >
             <button
               ref={closeButtonRef}

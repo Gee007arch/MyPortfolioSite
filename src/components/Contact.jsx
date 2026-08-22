@@ -1,5 +1,4 @@
-import { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import BackgroundCircles from "./specials/BackgroundCircles";
 import TechOrbit from "./specials/TechOrbit";
@@ -11,7 +10,6 @@ import {
 import { site, socialLinks } from "../data/siteConfig";
 
 const Contact = () => {
-  const formRef = useRef();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,46 +24,49 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setStatus({ type: "", message: "" });
 
-    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${site.email}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          _subject: `Portfolio Message from ${formData.name}: ${formData.subject}`,
+          _template: "table",
+        }),
+      });
 
-    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      if (response.ok) {
+        setStatus({ type: "success", message: "Message sent successfully!" });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      if (import.meta.env.DEV) {
+        console.error(error);
+      }
       setStatus({
         type: "error",
-        message: "Contact form is not configured. Add EmailJS keys to your .env file.",
+        message: "Failed to send message. Please try again.",
       });
+
+      setTimeout(() => {
+        setStatus({ type: "", message: "" });
+      }, 4000);
+    } finally {
       setIsSubmitting(false);
-      return;
     }
-
-    emailjs
-      .sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
-      .then(
-        () => {
-          setStatus({ type: "success", message: "Message sent successfully!" });
-          setFormData({ name: "", email: "", subject: "", message: "" });
-        },
-        (error) => {
-          console.error(error.text);
-          setStatus({
-            type: "error",
-            message: "Failed to send message. Please try again.",
-          });
-
-          setTimeout(() => {
-            setStatus({ type: "", message: "" });
-          }, 3000);
-        },
-      )
-      .finally(() => {
-        setIsSubmitting(false);
-      });
   };
 
   return (
@@ -174,7 +175,6 @@ const Contact = () => {
 
           <motion.div variants={fadeInUp}>
             <form
-              ref={formRef}
               onSubmit={handleSubmit}
               className="space-y-6 bg-gray-900/50 p-8 rounded-xl border border-gray-800 hover:border-red-900/30 transition-colors duration-300 shadow-xl"
             >

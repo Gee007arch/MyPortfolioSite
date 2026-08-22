@@ -25,7 +25,7 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <motion.div 
             variants={slideInLeft}
-            className="relative group w-full max-w-[500px] hidden lg:block lg:h-[600px] mx-auto lg:mx-0 top-0 rounded-2xl shadow-2xl border border-red-900/30 bg-fixed bg-no-repeat bg-contain"
+            className="relative group w-full max-w-[500px] hidden lg:block lg:h-[600px] mx-auto lg:mx-0 top-0 rounded-2xl shadow-2xl border border-red-900/30 bg-fixed bg-no-repeat bg-contain bg-"
             style={{ backgroundImage: `url('${site.images.about}')` }}
           >
             <div className="absolute inset-0 -z-10 w-full h-full bg-black/10 "></div>
@@ -33,7 +33,7 @@ const About = () => {
             <motion.div 
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="absolute -bottom-6 -right-6 w-24 h-24 bg-theme-red rounded-full flex items-center justify-center shadow-lg shadow-red-900/50 z-10 hover:bg-red-600 transition-colors duration-300 cursor-pointer  animate-bounce-slow"
+              className="absolute bottom-4 right-4 w-20 h-20 bg-theme-red rounded-full flex items-center justify-center shadow-lg shadow-red-900/50 z-10 hover:bg-red-600 transition-colors duration-300 cursor-pointer animate-bounce-slow"
             >
               <i className="fas fa-code text-white text-2xl animate-pulse"></i>
             </motion.div>

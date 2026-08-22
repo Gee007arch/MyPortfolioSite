@@ -12,6 +12,7 @@ export const site = {
   languages: "English",
   workMode: "Remote",
   freelance: "Available",
+  resumePdf: "/assets/resume.pdf",
   images: {
     hero: "/assets/img/hero-img.png",
     about: "/assets/img/section-image.jpeg",
@@ -139,7 +140,7 @@ export const portfolioItems = [
     id: 4,
     title: "Exclusive: Full-Scale Retail E-Commerce Platform",
     category: "web",
-    image: "/assets/img/portfolio/project4.svg",
+    image: "/assets/img/portfolio/project4.png",
     description:
       "A comprehensive shopping solution featuring a dynamic flash-sale countdown, multi-category navigation, and a robust product filtering system modeled after modern retail giants.",
     link: "https://gee-ecommerce.netlify.app/",
