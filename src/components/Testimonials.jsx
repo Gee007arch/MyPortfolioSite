@@ -1,27 +1,7 @@
 import BackgroundCircles from './specials/BackgroundCircles';
+import { testimonials } from '../data/siteConfig';
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      role: "CEO, TechStart",
-      image: "assets/img/testimonials/testimonials-1.jpg",
-      quote: "Akojuru delivered an exceptional front-end experience that exceeded our expectations. His attention to detail and technical expertise made all the difference."
-    },
-    {
-      name: "Michael Chen",
-      role: "Founder, DesignStudio",
-      image: "assets/img/testimonials/testimonials-2.jpg",
-      quote: "Working with Akojuru was a pleasure. He understood our vision perfectly and brought it to life with beautiful, functional designs."
-    },
-    {
-      name: "Emily Rodriguez",
-      role: "Product Manager, InnovateCorp",
-      image: "assets/img/testimonials/testimonials-3.jpg",
-      quote: "Akojuru's technical skills and problem-solving abilities are outstanding. He delivered our project on time and within budget."
-    }
-  ];
-
   return (
     <section id="testimonials" className="section-padding bg-theme-deep-blood text-gray-900 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-64  z-0"></div>
@@ -38,7 +18,7 @@ const Testimonials = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div 
-              key={index} 
+              key={testimonial.name} 
               className="bg-black/40 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300  opacity-0 animate-slide-up [animation-fill-mode:forwards] transform hover:-translate-y-2"
               style={{ animationDelay: `${index * 150}ms` }}
             >
@@ -49,7 +29,7 @@ const Testimonials = () => {
                   <p className="text-theme-paper-white font-medium">{testimonial.role}</p>
                 </div>
               </div>
-              <div className="flex mb-4 text-yellow-500">
+              <div className="flex mb-4 text-yellow-500" aria-hidden="true">
                 {[...Array(5)].map((_, i) => (
                   <i key={i} className="fas fa-star transform hover:scale-125 transition-transform duration-200" style={{ transitionDelay: `${i * 50}ms` }}></i>
                 ))}

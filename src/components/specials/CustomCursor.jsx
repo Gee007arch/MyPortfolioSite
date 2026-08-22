@@ -42,7 +42,11 @@ const CustomCursor = () => {
     };
   }, [cursorX, cursorY, isVisible]);
 
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
+  if (
+    typeof window !== 'undefined' &&
+    (window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  ) {
     return null;
   }
 

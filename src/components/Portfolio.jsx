@@ -1,82 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import BackgroundCircles from "./specials/BackgroundCircles";
 import TechOrbit from "./specials/TechOrbit";
 import TiltCard from "./specials/TiltCard";
 import { fadeInUp, staggerContainer, hoverScale } from "../utils/motion";
+import { portfolioItems } from "../data/siteConfig";
 
 const Portfolio = () => {
-  const [filter] = useState("all");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
-  const portfolioItems = [
-    {
-      id: 1,
-      title: "SkyWatch: Real-Time Weather Dashboard",
-      category: "app",
-      image: "assets/img/portfolio/project1.png",
-      description:
-        'A sleek, user-centric weather application that utilizes API integration to deliver live atmospheric data and forecasts with a minimalist "glassmorphism" UI.',
-      link: "https://geeoicialweatherapp.netlify.app/",
-      github: "https://github.com/Gee007arch/ShyWatch---Weather-App",
-    },
-    {
-      id: 2,
-      title: "GS Architects: Corporate Portfolio Hub",
-      category: "web",
-      image: "assets/img/portfolio/project2.png",
-      description:
-        "A professional architectural showcase website featuring high-resolution galleries and a modern, high-contrast interface designed to highlight large-scale structural projects.",
-      link: "https://gs-architects.netlify.app/",
-      github: "https://github.com/Gee007arch/GS-architects",
-    },
-    {
-      id: 3,
-      title: "GEE's Crypto | Digital Asset Tracker",
-      category: "app",
-      image: "assets/img/portfolio/project3.png",
-      description:
-        "A modern, mobile-responsive crypto-tracking platform that provides real-time data on digital assets, enabling users to monitor their portfolios and stay informed about market trends.",
-      link: "https://geecrypto.netlify.app/",
-      github: "https://github.com/Gee007arch/Gee-s-Crypto",
-    },
-    {
-      id: 4,
-      title: "Exclusive: Full-Scale Retail E-Commerce Platform",
-      category: "web",
-      image: "assets/img/portfolio/project4.png",
-      description:
-        "A comprehensive shopping solution featuring a dynamic flash-sale countdown, multi-category navigation, and a robust product filtering system modeled after modern retail giants.",
-      link: "https://gee-ecommerce.netlify.app/",
-      github: "https://github.com/Gee007arch/Gee_e-commerce",
-    },
-    {
-      id: 5,
-      title: "Vendure Capital: FinTech & Investment Portal",
-      category: "web",
-      image: "assets/img/portfolio/project5.png",
-      description:
-        "A high-end corporate platform for capital partners, focusing on data visualization, trust metrics, and a sophisticated professional aesthetic to drive enterprise growth.",
-      link: "https://vendurecapital.com/",
-      github: "https://github.com/tonituler/vendure_landing",
-    },
-    {
-      id: 6,
-      title: "CleverFood: On-Demand Delivery Marketplace",
-      category: "app",
-      image: "assets/img/portfolio/project6.png",
-      description:
-        "A functional food discovery and ordering platform that prioritizes local search functionality and a seamless user flow from restaurant selection to checkout.",
-      link: "https://clever-food.netlify.app/",
-      github: "https://github.com/Gee007arch/cleverfood",
-    },
-  ];
-
-  const filteredItems =
-    filter === "all"
-      ? portfolioItems
-      : portfolioItems.filter((item) => item.category === filter);
+  const closeButtonRef = useRef(null);
 
   const openLightbox = (item) => {
     setSelectedImage(item);
@@ -91,12 +24,24 @@ const Portfolio = () => {
   useEffect(() => {
     if (lightboxOpen) {
       document.body.style.overflow = "hidden";
+      closeButtonRef.current?.focus();
       return () => {
         document.body.style.overflow = "auto";
       };
     }
 
     document.body.style.overflow = "auto";
+  }, [lightboxOpen]);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") closeLightbox();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [lightboxOpen]);
 
   return (
@@ -128,12 +73,20 @@ const Portfolio = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item) => (
+          {portfolioItems.map((item) => (
             <motion.div
               key={item.id}
               variants={fadeInUp}
               whileHover={hoverScale}
               onClick={() => openLightbox(item)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  openLightbox(item);
+                }
+              }}
+              role="button"
+              tabIndex={0}
               className="group cursor-pointer h-full"
             >
               <TiltCard className="h-full">
@@ -157,6 +110,7 @@ const Portfolio = () => {
                       </p>
                       <div className="flex justify-center space-x-4">
                         <button
+                          type="button"
                           className="bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors transform hover:scale-105 shadow-lg"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -166,6 +120,7 @@ const Portfolio = () => {
                           <i className="fas fa-external-link-alt mr-2"></i>View
                         </button>
                         <button
+                          type="button"
                           className="bg-black/50 backdrop-blur-sm border-2 border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition-all transform hover:scale-105 shadow-lg"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -188,13 +143,19 @@ const Portfolio = () => {
         <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm"
           onClick={closeLightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="lightbox-title"
         >
           <div
             className="relative max-w-4xl w-full max-h-screen"
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              ref={closeButtonRef}
+              type="button"
               onClick={closeLightbox}
+              aria-label="Close project details"
               className="absolute -top-10 right-0 text-white text-2xl hover:text-red-500 z-10 transition-colors"
             >
               <i className="fas fa-times"></i>
@@ -202,12 +163,11 @@ const Portfolio = () => {
             <img
               src={selectedImage.image}
               alt={selectedImage.title}
-              loading="lazy"
               decoding="async"
               className="w-full h-auto max-h-[80vh] object-contain rounded-lg shadow-2xl shadow-red-900/20 border border-gray-800"
             />
             <div className="mt-4 text-white text-center">
-              <h3 className="text-xl font-bold text-theme-red">
+              <h3 id="lightbox-title" className="text-xl font-bold text-theme-red">
                 {selectedImage.title}
               </h3>
               <p className="text-sm opacity-80 text-gray-300">

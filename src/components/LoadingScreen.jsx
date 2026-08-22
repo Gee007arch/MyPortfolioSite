@@ -1,31 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const LoadingScreen = ({ onComplete }) => {
-  const [loading, setLoading] = useState(true);
   const [slideOut, setSlideOut] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-      setSlideOut(true);
-      
-      setTimeout(() => {
-        if (onComplete) onComplete();
-      }, 1000); 
-    }, 2000);
+    let slideTimer;
+    let doneTimer;
+    const started = Date.now();
+    const minVisibleMs = 400;
+    const slideMs = 500;
 
-    return () => clearTimeout(timer);
+    const beginExit = () => {
+      const wait = Math.max(0, minVisibleMs - (Date.now() - started));
+      slideTimer = setTimeout(() => {
+        setSlideOut(true);
+        doneTimer = setTimeout(() => {
+          if (onComplete) onComplete();
+        }, slideMs);
+      }, wait);
+    };
+
+    if (document.readyState === 'complete') {
+      beginExit();
+    } else {
+      window.addEventListener('load', beginExit, { once: true });
+    }
+
+    const fallback = setTimeout(beginExit, 1500);
+
+    return () => {
+      window.removeEventListener('load', beginExit);
+      clearTimeout(fallback);
+      clearTimeout(slideTimer);
+      clearTimeout(doneTimer);
+    };
   }, [onComplete]);
 
-  if (!loading && !slideOut) return null;
-
   return (
-    <div 
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-theme-off-black transition-transform duration-1000 ease-in-out ${
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-theme-off-black transition-transform duration-500 ease-in-out ${
         slideOut ? '-translate-y-full' : 'translate-y-0'
       }`}
+      role="status"
+      aria-live="polite"
+      aria-label="Loading"
       style={{
-        clipPath: slideOut ? 'polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)' : 'none'
+        clipPath: slideOut ? 'polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)' : 'none',
       }}
     >
       <div className="text-center relative z-10">
@@ -37,7 +57,6 @@ const LoadingScreen = ({ onComplete }) => {
         </div>
         <p className="mt-4 text-gray-400 text-sm tracking-widest uppercase">Loading Experience...</p>
       </div>
-
 
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-64 h-64 bg-red-900 rounded-full opacity-20 animate-float"></div>

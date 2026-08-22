@@ -1,16 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BackgroundCircles from './specials/BackgroundCircles';
-
-const navLinks = [
-  { name: 'Home', href: '#hero' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Resume', href: '#resume' },
-  { name: 'Portfolio', href: '#portfolio' },
-  { name: 'Services', href: '#services' },
-  { name: 'Contact', href: '#contact' },
-];
+import { navLinks, site } from '../data/siteConfig';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +27,6 @@ const Navbar = () => {
 
         const rect = section.getBoundingClientRect();
         
-        // Check if the middle of the viewport is within the section bounds
         if (rect.top <= scrollMiddle && rect.bottom >= scrollMiddle) {
           current = id;
         }
@@ -79,7 +69,7 @@ const Navbar = () => {
             <div className="relative">
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-theme-red via-theme-red-hover to-theme-paper-white opacity-60 blur-md animate-pulse"></div>
               <div className="relative h-14 w-14 md:h-16 md:w-16 rounded-full border-2 border-theme-red shadow-lg shadow-red-900/40 overflow-hidden bg-black/60">
-                <img src="assets/img/logo.jpeg" alt="logo" loading="lazy" decoding="async" className="h-full w-full object-cover" />
+                <img src={site.images.logo} alt={`${site.shortName} logo`} className="h-full w-full object-cover" />
               </div>
             </div>
           </motion.div>
@@ -129,12 +119,15 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden">
             <motion.button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
               whileTap={{ scale: 0.9 }}
-              className="text-white hover:text-red-500 focus:outline-none transition-colors"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              className="text-white hover:text-red-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-red rounded transition-colors"
             >
               <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'} text-2xl`}></i>
             </motion.button>
@@ -149,6 +142,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
+            id="mobile-menu"
             className="md:hidden bg-black/95 backdrop-blur-xl absolute w-full overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-2">

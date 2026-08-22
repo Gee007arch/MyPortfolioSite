@@ -7,8 +7,8 @@ import {
   fadeInUp,
   staggerContainer,
   hoverLift,
-  hoverScale,
 } from "../utils/motion";
+import { site, socialLinks } from "../data/siteConfig";
 
 const Contact = () => {
   const formRef = useRef();
@@ -31,9 +31,18 @@ const Contact = () => {
     setIsSubmitting(true);
     setStatus({ type: "", message: "" });
 
-    const SERVICE_ID = "service_h8ixl0i";
-    const TEMPLATE_ID = "template_lk05uai";
-    const PUBLIC_KEY = "q7zviOibLIMOpCcwM";
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      setStatus({
+        type: "error",
+        message: "Contact form is not configured. Add EmailJS keys to your .env file.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
     emailjs
       .sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
@@ -105,7 +114,7 @@ const Contact = () => {
                   <h4 className="font-semibold text-white group-hover:text-theme-red transition-colors duration-300">
                     Location
                   </h4>
-                  <p className="text-gray-400">Abuja FCT, Nigeria</p>
+                  <p className="text-gray-400">{site.location}</p>
                 </div>
               </motion.div>
 
@@ -120,7 +129,9 @@ const Contact = () => {
                   <h4 className="font-semibold text-white group-hover:text-theme-red transition-colors duration-300">
                     Email
                   </h4>
-                  <p className="text-gray-400">eberegodsent@gmail.com</p>
+                  <p className="text-gray-400">
+                    <a href={site.emailHref} className="hover:text-white">{site.email}</a>
+                  </p>
                 </div>
               </motion.div>
 
@@ -135,7 +146,9 @@ const Contact = () => {
                   <h4 className="font-semibold text-white group-hover:text-theme-red transition-colors duration-300">
                     Phone
                   </h4>
-                  <p className="text-gray-400">+234 818 929 1855</p>
+                  <p className="text-gray-400">
+                    <a href={site.phoneHref} className="hover:text-white">{site.phone}</a>
+                  </p>
                 </div>
               </motion.div>
             </div>
@@ -143,34 +156,18 @@ const Contact = () => {
             <motion.div variants={fadeInUp} className="mt-12">
               <h4 className="font-semibold mb-4 text-white">Follow Me</h4>
               <div className="flex space-x-4">
-                <a
-                  href="https://x.com/geeofficial69"
-                  className="w-12 h-12 bg-gray-800 hover:bg-theme-red rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-900/50 group"
-                >
-                  <i className="fab fa-twitter text-white group-hover:animate-pulse"></i>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/godsent-akojuru"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gray-800 hover:bg-theme-red rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-900/50 group"
-                >
-                  <i className="fab fa-linkedin text-white group-hover:animate-pulse"></i>
-                </a>
-                <a
-                  href="https://github.com/Gee007arch"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gray-800 hover:bg-theme-red rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-900/50 group"
-                >
-                  <i className="fab fa-github text-white group-hover:animate-pulse"></i>
-                </a>
-                <a
-                  href="#"
-                  className="w-12 h-12 bg-gray-800 hover:bg-theme-red rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-900/50 group"
-                >
-                  <i className="fab fa-dribbble text-white group-hover:animate-pulse"></i>
-                </a>
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.name}
+                    className="w-12 h-12 bg-gray-800 hover:bg-theme-red rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-900/50 group"
+                  >
+                    <i className={`${link.footerIcon} text-white group-hover:animate-pulse`}></i>
+                  </a>
+                ))}
               </div>
             </motion.div>
           </motion.div>

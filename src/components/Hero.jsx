@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import BackgroundCircles from "./specials/BackgroundCircles";
 import TechOrbit from "./specials/TechOrbit";
 import { fadeInUp, staggerContainer, slideInRight } from "../utils/motion";
+import { site, socialLinks } from "../data/siteConfig";
 
 const Hero = () => {
   const typedTextRef = useRef(null);
@@ -76,7 +77,7 @@ const Hero = () => {
             Hi, I'm{" "}
             <span className="font-lobster italic text-shimmer-animate relative z-10">
               {" "}
-              Godsent
+              {site.firstName}
             </span>
             <TechOrbit className="-right-4 -top-6 md:-right-12 md:-top-8 w-20 h-20 md:w-32 md:h-32" />
           </motion.h1>
@@ -98,41 +99,21 @@ const Hero = () => {
           >
             <p className="text-white font-semibold mb-4 text-xl">Find Me on</p>
             <div className="flex space-x-5 md:space-x-10">
-              <a
-                href="https://www.facebook.com/share/1GTjETc9X4/"
-                className="group relative text-white transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className="absolute inset-0 bg-red-500 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-full"></div>
-                <i className="fab fa-facebook-f text-3xl relative z-10 group-hover:text-red-500 group-hover:scale-110 transition-transform duration-300"></i>
-              </a>
-              <a
-                href="https://x.com/geeofficial69"
-                className="group relative text-white transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className="absolute inset-0 bg-red-500 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-full"></div>
-                <i className="fab fa-twitter text-3xl relative z-10 group-hover:text-red-500 group-hover:scale-110 transition-transform duration-300"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/gee_official_gram?igsh=YXR1b3hjMXVqZmg3"
-                className="group relative text-white transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className="absolute inset-0 bg-red-500 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-full"></div>
-                <i className="fab fa-instagram text-3xl relative z-10 group-hover:text-red-500 group-hover:scale-110 transition-transform duration-300"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/godsent-akojuru-9b87b9367?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                className="group relative text-white transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className="absolute inset-0 bg-red-500 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-full"></div>
-                <i className="fab fa-linkedin-in text-3xl relative z-10 group-hover:text-red-500 group-hover:scale-110 transition-transform duration-300"></i>
-              </a>
-              <a
-                href="https://github.com/Gee007arch"
-                className="group relative text-white transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className="absolute inset-0 bg-red-500 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-full"></div>
-                <i className="fab fa-github text-3xl relative z-10 group-hover:text-red-500 group-hover:scale-110 transition-transform duration-300"></i>
-              </a>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.name}
+                  className="group relative text-white transition-all duration-300 hover:-translate-y-2"
+                >
+                  <div className="absolute inset-0 bg-red-500 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-full"></div>
+                  <i
+                    className={`${link.icon} text-3xl relative z-10 group-hover:text-red-500 group-hover:scale-110 transition-transform duration-300`}
+                  ></i>
+                </a>
+              ))}
             </div>
           </motion.div>
 
@@ -155,13 +136,15 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          <div className="relative z-10 w-full max-w-md">
+          <div className="relative z-10 w-full max-w-md rounded-full">
             <img
-              src="assets/img/profile-img2.png"
-              alt="Akojuru Godsent"
-              loading="lazy"
+              src={site.images.hero}
+              alt={site.name}
+              width="512"
+              height="640"
+              fetchPriority="high"
               decoding="async"
-              className="w-full h-auto object-cover "
+              className="w-full h-auto object-contain"
             />
           </div>
         </motion.div>

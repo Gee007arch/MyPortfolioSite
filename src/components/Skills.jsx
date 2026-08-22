@@ -3,27 +3,10 @@ import { motion } from 'framer-motion';
 import BackgroundCircles from './specials/BackgroundCircles';
 import TechOrbit from './specials/TechOrbit';
 import { fadeInUp, staggerContainer, hoverLift } from '../utils/motion';
+import { skills, tools } from '../data/siteConfig';
 
 const Skills = () => {
   const sectionRef = useRef(null);
-
-  const skills = [
-    { name: 'HTML', percent: 97, icon: 'fab fa-html5', color: 'text-orange-500' },
-    { name: 'Tailwind CSS', percent: 95, icon: 'assets/img/tailwindcss-mark.96ee6a5a.svg', color: 'text-blue-500', isImage: true },
-    { name: 'JavaScript', percent: 80, icon: 'fab fa-js', color: 'text-yellow-400' },
-    { name: 'TypeScript', percent: 80, icon: 'assets/img/ts-logo-256.svg', color: 'text-blue-400', isImage: true },
-    { name: 'React', percent: 85, icon: 'fab fa-react', color: 'text-cyan-400' },
-    { name: 'Next.js', percent: 75, icon: 'assets/img/nextjs.svg', color: 'text-theme-paper-white', isImage: true },
-    { name: 'SQL', percent: 70, icon: 'fas fa-database', color: 'text-green-400' },
-    { name: 'API Integration', percent: 80, icon: 'fas fa-network-wired', color: 'text-green-500' },
-  ];
-
-  const tools = [
-    { name: 'Version Control (Git)', percent: 85, icon: 'fab fa-git-alt', color: 'text-red-500' },
-    { name: 'Team Collaboration', percent: 90, icon: 'fas fa-users', color: 'text-blue-300' },
-    { name: 'Project Management', percent: 80, icon: 'fas fa-tasks', color: 'text-purple-400' },
-    { name: 'Decision-making', percent: 85, icon: 'fas fa-lightbulb', color: 'text-yellow-300' },
-  ];
 
   return (
     <section id="skills" className="section-padding bg-theme-deep-blood relative overflow-hidden" ref={sectionRef}>
@@ -44,7 +27,7 @@ const Skills = () => {
           </p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <motion.div variants={fadeInUp}>
             <h3 className="text-2xl font-bold text-white mb-8 border-b-2 border-theme-red pb-2 inline-block">Technical Skills</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

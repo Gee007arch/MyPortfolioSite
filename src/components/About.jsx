@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import BackgroundCircles from './specials/BackgroundCircles';
 import TechOrbit from './specials/TechOrbit';
 import { fadeInUp, staggerContainer, slideInLeft } from '../utils/motion';
+import { site } from '../data/siteConfig';
 
 
 const About = () => {
@@ -24,8 +25,8 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <motion.div 
             variants={slideInLeft}
-            className="relative group w-full max-w-[500px] hidden lg:block lg:h-[600px] mx-auto lg:mx-0 top-0 rounded-2xl shadow-2xl border border-red-900/30 bg-fixed bg-no-repeat"
-            style={{ backgroundImage: "url('/assets/img/profile-img.jpeg')" }}
+            className="relative group w-full max-w-[500px] hidden lg:block lg:h-[600px] mx-auto lg:mx-0 top-0 rounded-2xl shadow-2xl border border-red-900/30 bg-fixed bg-no-repeat bg-contain"
+            style={{ backgroundImage: `url('${site.images.about}')` }}
           >
             <div className="absolute inset-0 -z-10 w-full h-full bg-black/10 "></div>
             
@@ -39,7 +40,7 @@ const About = () => {
           </motion.div>
           
           <motion.div variants={fadeInUp} className="px-4 sm:px-6 lg:px-8" >
-            <h3 className="text-3xl font-bold text-white mb-6">Gee Dev</h3>
+            <h3 className="text-3xl font-bold text-white mb-6">{site.shortName}</h3>
             <p className="text-lg text-gray-400 mb-8 leading-relaxed hover:text-gray-300 transition-colors duration-300">
            As an Aptech-certified Software Engineer (ADSE) with a background in Telecommunication Science, I don't just build websites—I engineer high-performance digital environments. Operating under the name Gee Dev, I specialize in the React ecosystem, blending the structural rigor of the SDLC with the creative flair of modern UI trends. From glassmorphism-styled logic engines to fluid, hardware-accelerated animations, I write clean, scalable code designed to solve real-world business problems. Currently honing my craft at CodeAlpha, I bring a scientist’s precision to every pixel-perfect clone and custom API integration I build.
             </p>
@@ -54,25 +55,25 @@ const About = () => {
                     <div className="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center mr-3 text-theme-red group-hover/item:bg-theme-red group-hover/item:text-white transition-all duration-300">
                       <i className="fas fa-user-tag"></i>
                     </div>
-                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Role:</strong> Front End Developer</span>
+                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Role:</strong> {site.role}</span>
                   </li>
                   <li className="flex items-center group/item">
                     <div className="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center mr-3 text-theme-red group-hover/item:bg-theme-red group-hover/item:text-white transition-all duration-300">
                       <i className="fab fa-github"></i>
                     </div>
-                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>GitHub:</strong> <a href="https://github.com/Gee007arch" className="text-red-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Gee007arch</a></span>
+                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>GitHub:</strong> <a href={`https://github.com/${site.githubHandle}`} className="text-red-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">{site.githubHandle}</a></span>
                   </li>
                   <li className="flex items-center group/item">
                     <div className="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center mr-3 text-theme-red group-hover/item:bg-theme-red group-hover/item:text-white transition-all duration-300">
                       <i className="fas fa-phone"></i>
                     </div>
-                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Phone:</strong> +234 818 929 1855</span>
+                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Phone:</strong> {site.phone}</span>
                   </li>
                   <li className="flex items-center group/item">
                     <div className="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center mr-3 text-theme-red group-hover/item:bg-theme-red group-hover/item:text-white transition-all duration-300">
                       <i className="fas fa-map-marker-alt"></i>
                     </div>
-                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Location:</strong> Abuja FCT, Nigeria</span>
+                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Location:</strong> {site.location}</span>
                   </li>
                 </ul>
               </motion.div>
@@ -85,25 +86,25 @@ const About = () => {
                     <div className="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center mr-3 text-theme-red group-hover/item:bg-theme-red group-hover/item:text-white transition-all duration-300">
                       <i className="fas fa-language"></i>
                     </div>
-                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Languages:</strong> English </span>
+                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Languages:</strong> {site.languages}</span>
                   </li>
                   <li className="flex items-center group/item">
                     <div className="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center mr-3 text-theme-red group-hover/item:bg-theme-red group-hover/item:text-white transition-all duration-300">
                       <i className="fas fa-graduation-cap"></i>
                     </div>
-                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Preferred Work Mode:</strong> Remote</span>
+                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Preferred Work Mode:</strong> {site.workMode}</span>
                   </li>
                   <li className="flex items-center group/item">
                     <div className="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center mr-3 text-theme-red group-hover/item:bg-theme-red group-hover/item:text-white transition-all duration-300">
                       <i className="fas fa-envelope"></i>
                     </div>
-                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Email:</strong> eberegodsent@gmail.com</span>
+                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Email:</strong> {site.email}</span>
                   </li>
                   <li className="flex items-center group/item">
                     <div className="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center mr-3 text-theme-red group-hover/item:bg-theme-red group-hover/item:text-white transition-all duration-300">
                       <i className="fas fa-briefcase"></i>
                     </div>
-                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Freelance:</strong> Available</span>
+                    <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300"><strong>Freelance:</strong> {site.freelance}</span>
                   </li>
                 </ul>
               </motion.div>
