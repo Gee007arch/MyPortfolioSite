@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import BackgroundCircles from './specials/BackgroundCircles';
 import TechOrbit from './specials/TechOrbit';
-import { fadeInUp, staggerContainer, slideInLeft, slideInRight } from '../utils/motion';
+import { fadeInUp, staggerContainer } from '../utils/motion';
+import { site } from '../data/siteConfig';
 
 const Resume = () => {
   return (
@@ -9,102 +10,64 @@ const Resume = () => {
       <BackgroundCircles variant="resume" />
 
       <motion.div 
-        className="max-w-3xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 md:px-7 lg:px-8 w-full relative z-10"
+        className="max-w-3xl lg:max-w-5xl mx-auto px-4 sm:px-6 md:px-7 lg:px-8 w-full relative z-10"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
         <motion.div variants={fadeInUp} className="text-center my-12 relative inline-block w-full">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block relative z-10">Resume</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-shimmer-animate inline-block relative z-10">
+            My Resume
+          </h2>
           <TechOrbit className="-right-6 -top-6 w-24 h-24 opacity-20" />
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mt-4">
-            My professional journey and educational background that shaped my expertise.
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto mt-4">
+            Download my complete curriculum vitae to explore my professional background, technical competencies, and key achievements.
           </p>
         </motion.div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <motion.div variants={slideInLeft}>
-            <h3 className="text-2xl font-bold text-white mb-8 border-l-4 border-theme-red pl-4">Professional Experience</h3>
-            <div className="space-y-8">
-              <ResumeItem 
-                title="Front End Developer"
-                company="One Box Media, Gwarimpa, Abuja"
-                date="Oct 2025 - Present"
-                description="Developed responsive web applications using React and Tailwind CSS to improve user engagement. Integrated APIs to enhance front-end functionality and optimize user experience."
-                list={[
-                  "Built responsive interfaces focused on accessibility and usability",
-                  "Integrated RESTful APIs to deliver dynamic, real-time features",
-                  "Collaborated with designers on wireframes and prototypes",
-                  "Participated in code reviews to uphold quality standards"
-                ]}
-              />
-              <ResumeItem 
-                title="Professional Travel Manager"
-                company="Dreamport, Remote"
-                date="Mar 2025 - Aug 2025"
-                description="Coordinated client travel logistics, developed policies, and provided tailored itinerary recommendations while managing inquiries efficiently."
-                list={[
-                  "Handled end-to-end travel arrangements and timely bookings",
-                  "Assisted development of travel policies and compliance guidelines",
-                  "Researched destinations and prepared custom itineraries",
-                  "Addressed client inquiries and resolved travel concerns"
-                ]}
-              />
-            </div>
-          </motion.div>
-          
-          <motion.div variants={slideInRight}>
-            <h3 className="text-2xl font-bold text-white mb-8 border-l-4 border-theme-red pl-4">Education</h3>
-            <div className="space-y-8">
-              <ResumeItem 
-                title="Advanced Diploma in Software Engineering"
-                company="Aptech Ltd, Area 11, Garki, Abuja"
-                date="Sep 2023 - Oct 2025"
-                description="Practical training in software engineering and modern web development."
-                list={[
-                  "Focused on React, Tailwind CSS, and API integration",
-                  "Deep understanding of the full Software Development Life Cycle (SDLC)",
-                  "Practical experience in resolving complex algorithmic logic and database architecture"
-                ]}
-              />
-              <ResumeItem 
-                title="Bachelor of Science in Telecommunication Science"
-                company="University of Ilorin, Ilorin, Kwara State"
-                date="Dec 2018 - May 2023"
-                description="Studied telecommunication systems and core computing concepts with practical applications."
-                list={[
-                  "Projects exploring networking and systems",
-                  "Foundations in software and communication technologies"
-                ]}
-              />
-            </div>
-          </motion.div>
-        </div>
+
+        <motion.div 
+          variants={fadeInUp}
+          className="bg-black/50 border border-red-900/40 hover:border-red-500/50 rounded-2xl p-8 md:p-12 text-center shadow-2xl backdrop-blur-md max-w-3xl mx-auto flex flex-col items-center transition-all duration-300"
+        >
+          <div className="w-20 h-20 bg-theme-red/20 rounded-full flex items-center justify-center mb-6 text-theme-red border border-theme-red/30 shadow-lg shadow-red-900/30 animate-pulse">
+            <i className="fas fa-file-pdf text-4xl"></i>
+          </div>
+
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+            {site.name} — CV
+          </h3>
+          <p className="text-red-400 font-semibold text-lg mb-6">
+            {site.role} • {site.location}
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            <span className="px-4 py-1.5 bg-gray-800/80 border border-gray-700 text-gray-300 rounded-full text-sm font-medium">
+              React.js & Tailwind CSS
+            </span>
+            <span className="px-4 py-1.5 bg-gray-800/80 border border-gray-700 text-gray-300 rounded-full text-sm font-medium">
+              Aptech Certified (ADSE)
+            </span>
+            <span className="px-4 py-1.5 bg-gray-800/80 border border-gray-700 text-gray-300 rounded-full text-sm font-medium">
+              RESTful API Integration
+            </span>
+          </div>
+
+          <motion.a
+            href={site.resumePdf}
+            download="Akojuru_Godsent_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center justify-center bg-gradient-to-r from-red-600 via-red-500 to-red-600 bg-[length:200%_auto] animate-shine text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg shadow-red-900/50 hover:shadow-red-600/60 transition-all duration-300 border border-white/20"
+          >
+            <i className="fas fa-download mr-3 text-xl"></i>
+            Download Resume (PDF)
+          </motion.a>
+        </motion.div>
       </motion.div>
     </section>
-  );
-};
-
-const ResumeItem = ({ title, company, date, description, list }) => {
-  return (
-    <motion.div 
-      className="relative pl-8 border-l-2 border-theme-red group"
-      whileHover={{ x: 5 }}
-      transition={{ type: "spring", stiffness: 300 }}
-    >
-      <div className="absolute -left-2 top-0 w-4 h-4 bg-theme-red rounded-full group-hover:scale-150 group-hover:shadow-[0_0_10px_#ff0000] transition-all duration-300"></div>
-      <div className="bg-black/40 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-900/20 hover:border-red-500/50 transform">
-        <h4 className="text-xl font-bold text-white mb-2 group-hover:text-theme-red transition-colors duration-300">{title}</h4>
-        <p className="text-red-400 font-semibold mb-2">{company} • {date}</p>
-        <p className="text-gray-400 mb-4">{description}</p>
-        <ul className="list-disc list-inside text-gray-400 space-y-1">
-          {list.map((item, index) => (
-            <li key={index} className="hover:text-gray-200 transition-colors duration-200">{item}</li>
-          ))}
-        </ul>
-      </div>
-    </motion.div>
   );
 };
 

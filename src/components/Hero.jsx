@@ -136,7 +136,7 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          <div className="relative z-10 w-full max-w-md rounded-full">
+          <div className="relative z-10 w-72 h-72 sm:w-80 sm:h-80 lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden border-4 border-theme-red shadow-[0_0_40px_rgba(255,0,0,0.5)] bg-gradient-to-b from-red-950/40 via-black to-theme-off-black group flex items-center justify-center">
             <img
               src={site.images.hero}
               alt={site.name}
@@ -144,7 +144,7 @@ const Hero = () => {
               height="640"
               fetchPriority="high"
               decoding="async"
-              className="w-full h-auto object-contain"
+              className="w-full h-full object-contain object-top transition-transform duration-500 group-hover:scale-105"
             />
           </div>
         </motion.div>

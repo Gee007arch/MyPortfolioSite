@@ -1,14 +1,10 @@
 
-// Animation variants for Framer Motion
-
-// Transition settings
 export const transition = {
   type: "spring",
   duration: 0.5,
   bounce: 0.2
 };
 
-// Fade in up animation for sections
 export const fadeInUp = {
   hidden: { 
     y: 40, 
@@ -25,7 +21,6 @@ export const fadeInUp = {
   }
 };
 
-// Stagger container for children elements
 export const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
@@ -37,7 +32,6 @@ export const staggerContainer = {
   }
 };
 
-// Simple fade in
 export const fadeIn = {
   hidden: { opacity: 0 },
   visible: { 
@@ -46,7 +40,6 @@ export const fadeIn = {
   }
 };
 
-// Scale up animation (for cards/images)
 export const scaleUp = {
   hidden: { scale: 0.9, opacity: 0 },
   visible: { 
@@ -56,7 +49,6 @@ export const scaleUp = {
   }
 };
 
-// Slide in from left
 export const slideInLeft = {
   hidden: { x: -50, opacity: 0 },
   visible: { 
@@ -66,7 +58,6 @@ export const slideInLeft = {
   }
 };
 
-// Slide in from right
 export const slideInRight = {
   hidden: { x: 50, opacity: 0 },
   visible: { 
@@ -76,7 +67,6 @@ export const slideInRight = {
   }
 };
 
-// Hover effects
 export const hoverScale = {
   scale: 1.05,
   transition: { duration: 0.2 }
