@@ -41,8 +41,8 @@ export const socialLinks = [
   {
     name: "X",
     href: "https://x.com/geeofficial69",
-    icon: "fab fa-twitter",
-    footerIcon: "fab fa-twitter",
+    icon: "fab fa-x-twitter",
+    footerIcon: "fab fa-x-twitter",
   },
   {
     name: "Instagram",
